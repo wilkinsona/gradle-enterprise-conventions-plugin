@@ -7,23 +7,25 @@ Conventions for Gradle projects that use the Gradle Enterprise instance hosted a
 When applied, the conventions will configure the build cache to:
 
 - Enable local caching.
-- Use https://ge.spring.io/cache/ as the remote cache.
+- Use https://ge.spring.io as the remote cache server.
 - Enable pulling from the remote cache.
-- Enable pushing to the remote cache if the required credentials are available.
+- Enable pushing to the remote cache if the required access token is available.
 
 ### Remote cache
 
 #### URL
 
-By default, https://ge.spring.io/cache/ will be used as the remote cache.
-The URL can be configured using the `GRADLE_ENTERPRISE_CACHE_URL` environment variable.
+By default, https://ge.spring.io will be used as the remote cache server.
+The server can be configured using the `GRADLE_ENTERPRISE_CACHE_SERVER` environment variable.
+For backwards compatibility, `GRADLE_ENTERPRISE_CACHE_URL` is also supported for a limited time.
+`/cache/` is removed from the end of the URL and the remainder is used to configure the remote cache server.
 
 #### Credentials
 
 :rotating_light: **Credentials must not be configured in environments where pull requests are built.** :rotating_light:
 
 Pushing to the remote cache requires authentication.
-The necessary credentials can be provided using the `GRADLE_ENTERPRISE_CACHE_USERNAME` and `GRADLE_ENTERPRISE_CACHE_PASSWORD` environment variables.
+The necessary credential can be provided using the `GRADLE_ENTERPRISE_ACCESS_KEY` environment variable.
 
 #### Bamboo
 
